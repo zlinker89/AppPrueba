@@ -1,0 +1,32 @@
+<ion-view view-title="Login" id="Login" ng-controller="LoginCtrl" class="col col-80 col-offset-10">
+    <ion-content>
+        <form role="form" name="LoginForm" class="ng-pristine ng-valid">
+
+            <div class="list">
+                <div id="logo"></div>
+                <br>
+
+                <label class="item item-input" ng-class="{ 'has-error' : LoginForm.email.$invalid && !LoginForm.email.$pristine }">
+                <input type="email" name="email" ng-model="User.email" placeholder="Email" required>
+                </label>
+                <label class="item item-input" ng-class="{ 'has-error' : LoginForm.password.$invalid && !LoginForm.password.$pristine }">
+                <input type="password" name="password" ng-model="User.password" placeholder="Contraseña" required ng-minlength="6">
+                </label>
+                <div class="item item-checkbox  checkbox-calm">
+                    Recuerdame
+                    <label class="checkbox">
+                    <input type="checkbox" ng-model="User.Recuerdame">
+                    </label>
+                </div>
+            </div>
+            <button class="button button-block button-positive" ng-class="{'disabled': LoginForm.$invalid}" ng-disabled="LoginForm.$invalid"
+                ng-click="Ingresar()">
+                Ingresar
+                </button>
+        </form>
+
+        <a class="button button-block button-assertive" ng-click="GoRegister()">
+            Crear Cuenta
+        </a>
+    </ion-content>
+</ion-view>

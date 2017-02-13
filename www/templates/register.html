@@ -1,0 +1,35 @@
+<ion-view view-title="Formulario de registro" ng-controller="RegisterCtrl" >
+    <ion-header-bar class="bar-stable">
+        <a ng-click="GoLogin()" class="button buttons-left">
+            <i class="icon ion-reply"></i>
+        </a>
+        <h3 class="title">Formulario de registro</h3>
+    </ion-header-bar>
+    <ion-content class="col col-80 col-offset-10">
+        <br>
+        <br>
+        <form role="form" name="RegisterForm" class="ng-pristine ng-valid">
+            <div class="list">
+                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.name.$invalid && !RegisterForm.name.$pristine }">
+                <input type="text" name="name" ng-model="User.name" placeholder="Nombre" required>
+                </label>
+                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.email.$invalid && !RegisterForm.email.$pristine }">
+                <input type="email" name="email" ng-model="User.email" placeholder="Email" required>
+                </label>
+                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.password.$invalid && !RegisterForm.password.$pristine }">
+                <input type="password" name="password" ng-model="User.password" placeholder="Contraseña" required ng-minlength="6">
+                </label>
+                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.rptpassword.$invalid && !RegisterForm.rptpassword.$pristine }">
+                <input type="password" name="rptpassword" ng-model="User.rptpassword" placeholder="Confirmar contraseña" required ng-minlength="6">
+                </label>
+            </div>
+            <button class="button button-block button-balanced" 
+            ng-class="{'disabled': RegisterForm.$invalid}" ng-disabled="RegisterForm.$invalid"
+            ng-click="Registrar()"
+            >
+                Crear Usuario
+            </button>                    
+        </form>
+        
+    </ion-content>
+</ion-view>
