@@ -1,9 +1,36 @@
-var HOST = 'http://192.168.1.5/Laboratorio/public';
+var HOST = 'http://192.168.43.233/Laboratorio/public';
 
 app.factory('ServicioService', function($http) {
   var myService = {
     get: function() {
       var promise = $http.get(HOST + '/servicio').then(function(response){
+        return response.data;
+      },
+      function(response){ return response.data;});
+      return promise;
+    }
+  };
+  return myService;
+});
+
+app.factory('DomicilioService', function($http) {
+  var myService = {
+    get: function() {
+      var promise = $http.get(HOST + '/domicilio').then(function(response){
+        return response.data;
+      },
+      function(response){ return response.data;});
+      return promise;
+    },
+    getByUser: function(id) {
+      var promise = $http.get(HOST + '/domicilio/user/' + id).then(function(response){
+        return response.data;
+      },
+      function(response){ return response.data;});
+      return promise;
+    },
+    post: function(obj) {
+      var promise = $http.post(HOST + '/domicilio', obj).then(function(response){
         return response.data;
       },
       function(response){ return response.data;});

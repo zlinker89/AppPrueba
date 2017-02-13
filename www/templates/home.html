@@ -1,16 +1,19 @@
 <div ng-controller="HomeCtrl">
-    <ion-header-bar class="bar-stable">
-        <a ng-click="logout()" class="button buttons-left">
-            <i class="icon ion-close"></i>
-        </a>
-        <h3 class="title">LabApp v0.0.1</h3>
-    </ion-header-bar>
     <ion-tabs class="tabs-positive tabs-icon-top">
         <ion-tab title="Servicios" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
             <ion-view view-title="Servicios" ng-controller="ServiciosCtrl">
+                <ion-header-bar class="bar-stable">
+                    <a ng-click="logout()" class="button buttons-left">
+                        <i class="icon ion-close"></i>
+                    </a>
+                    <h3 class="title"> {{Carrito.length}} examenes seleccionados</h3>
+                    <a ng-click="GetFormDomicilio()" ng-if="Carrito.length > 0" class="button buttons-right">
+                        <i class="icon ion-android-cart"></i>
+                    </a>
+                </ion-header-bar>
                 <ion-content>
-                    <ion-list>
-                        <ion-item ng-repeat="item in servicios">
+                    <ion-list class="lista">
+                        <ion-item ng-repeat="item in servicios" class="item-lista" id="id{{item.id}}">
                             <div>
                                 <strong>{{item.NombreServicio}}</strong>
                             </div>
@@ -19,7 +22,7 @@
                                     {{item.Descripcion}}
                                 </div>
                                 <div class="col-offset-10 col-20">
-                                    <button class="button button-block button-positive item-button-right" ng-click="AddView(item)">
+                                    <button id="boton{{item.id}}" class="button button-block button-positive item-button-right" ng-click="AddCart(item)">
                                         <i class="icon ion-android-add"></i>
                                     </button>
                                 </div>
@@ -30,7 +33,36 @@
             </ion-view>
         </ion-tab>
         <ion-tab title="Historial" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-            <ion-nav-view name="Historial"></ion-nav-view>
+            <ion-view view-title="Servicios" ng-controller="DomicilioCtrl">
+                <ion-header-bar class="bar-stable">
+                    <a ng-click="logout()" class="button buttons-left">
+                        <i class="icon ion-close"></i>
+                    </a>
+                    <a ng-click="GetFormDomicilio()" ng-if="Carrito.length > 0" class="button buttons-right">
+                        <i class="icon ion-android-cart"></i>
+                    </a>
+                </ion-header-bar>
+                <ion-content>
+                    <ion-list class="lista">
+                        <ion-item ng-repeat="item in domicilios" class="item-lista" id="id{{item.id}}">
+                            <div>
+                                <strong>{{item.NombreServicio}}</strong>
+                            </div>
+                            <div class="row">
+                                <div class="col-60 item-text-wrap">
+                                    Forma de Pago: {{item.FormaPago}}<br>
+                                    Resultados en: {{item.TipoResultados}}
+                                </div>
+                                <div class="col-offset-10 col-20">
+                                    <button id="boton{{item.id}}" class="button button-block button-positive item-button-right" ng-click="AddCart(item)">
+                                        <i class="icon ion-information-circled"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
         </ion-tab>
         <ion-tab title="Configuración" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
             <ion-nav-view name="Opciones"></ion-nav-view>

@@ -2,35 +2,49 @@
     <ion-view view-title="Solicita tu domicilio">
         <ion-nav-bar class="bar-stable">
             <ion-nav-back-button></ion-nav-back-button>
-            <h3 class="title">LabApp v0.0.1</h3>
         </ion-nav-bar>
         <ion-content ng-controller="DomicilioCtrl">
-            {{User}}
-            <br>----------------------<br>
-            {{servicio}}
             <div class="col-80 col-offset-10">
-                <form role="form" name="RegisterForm" class="ng-pristine ng-valid">
-            <div class="list">
-                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.name.$invalid && !RegisterForm.name.$pristine }">
-                <input type="text" name="name" ng-model="User.name" placeholder="Nombre" required>
-                </label>
-                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.email.$invalid && !RegisterForm.email.$pristine }">
-                <input type="email" name="email" ng-model="User.email" placeholder="Email" required>
-                </label>
-                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.password.$invalid && !RegisterForm.password.$pristine }">
-                <input type="password" name="password" ng-model="User.password" placeholder="Contraseña" required ng-minlength="6">
-                </label>
-                <label class="item item-input" ng-class="{ 'has-error' : RegisterForm.rptpassword.$invalid && !RegisterForm.rptpassword.$pristine }">
-                <input type="password" name="rptpassword" ng-model="User.rptpassword" placeholder="Confirmar contraseña" required ng-minlength="6">
-                </label>
-            </div>
-            <button class="button button-block button-balanced" 
-            ng-class="{'disabled': RegisterForm.$invalid}" ng-disabled="RegisterForm.$invalid"
-            ng-click="Registrar()"
-            >
-                Crear Usuario
-            </button>                    
-        </form>
+                <form role="form" name="DomicilioForm" class="ng-pristine ng-valid">
+                    <div class="list">
+                        <label class="item item-input item-select">
+                        <div class="input-label">
+                            Forma de Pago
+                        </div>
+                        <select ng-model="Domicilio.FormaPago">
+                            <option>Efectivo</option>
+                            <option>Debito</option>
+                        </select>
+                        </label>
+                        <label class="item item-input item-select">
+                        <div class="input-label">
+                            Resultados En:
+                        </div>
+                        <select ng-model="Domicilio.TipoResultados">
+                            <option>Fisico</option>
+                            <option>Correo Electronico</option>
+                        </select>
+                        </label>
+                            
+                        <ion-list>
+                            <h5>Examenes Por Realizar: </h5>
+                            <ion-item>
+                                <div ng-repeat="item in servicios">
+                                   <strong>{{$index + 1}}</strong> {{item.NombreServicio}}
+                                </div>
+
+                            </ion-item>
+                        </ion-list>
+                            <label>Fecha: </label>
+                            <datepicker>
+                                <input ng-model="Domicilio.Fecha" type="text" required/>
+                            </datepicker>
+                    </div>
+                    <button class="button button-block button-balanced" ng-class="{'disabled': DomicilioForm.$invalid}" ng-disabled="DomicilioForm.$invalid"
+                        ng-click="Registrar()">
+                        Crear Domicilio
+                        </button>
+                </form>
             </div>
         </ion-content>
     </ion-view>

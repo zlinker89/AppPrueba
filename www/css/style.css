@@ -11,4 +11,6 @@
     background: rgba(0,0,0,0.1);
     box-shadow: 0px 0px 30px rgba(0,0,0,0.1) inset;
 }*/
-
+.item-lista:nth-child(even){
+    background: #eee;
+}

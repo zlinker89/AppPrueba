@@ -1,5 +1,5 @@
 
-var app = angular.module('starter', ['ionic']);
+var app = angular.module('starter', ['ionic','720kb.datepicker']);
 var _headers = {
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',

@@ -17,4 +17,8 @@ app.controller('HomeCtrl', function (UserService, sessionService, $scope, $state
         //location.href = "/#/login";
         $state.go('login');
     };
+
+    $scope.GoHome = function(){
+        $state.go('home');
+    };
 });
